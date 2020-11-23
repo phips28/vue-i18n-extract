@@ -142,7 +142,7 @@
       } else if (isYAML) {
         langObj = yaml.safeLoad(fs.readFileSync(langPath, 'utf8'));
       } else {
-        langObj = eval(fs.readFileSync(langPath, 'utf8'));
+        langObj = eval(fs.readFileSync(langPath, 'utf8').replace('export default', 'module.exports=')); // support ts files
       }
 
       const fileName = f.replace(process.cwd(), '');
